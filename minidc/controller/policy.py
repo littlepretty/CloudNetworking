@@ -182,7 +182,7 @@ class StaticPolicy(object):
                 else: # choose right port to core
                     vlan_id = h.vlans[0]
                     core = topo.getVlanCore(vlan_id)
-                    outport = topo.ports[edge.name][core.name]
+                    outport = topo.ports[edge.name][core]
                 # install routing policy when @outport is determined
                 routingTable[edge.dpid].append({
                     'eth_dst' : h.eth,
