@@ -80,7 +80,14 @@ class AdaptivePolicy(object):
         # to find the least utilized switch.
 
         # [REPLACE WITH YOUR CODE]
-        return self.utilization.keys()[0]
+        min_utilized_core = topo.coreSwitches.keys()[0]
+        min_val = self.utilization[min_utilized_core]
+        for core in topo.coreSwitches.keys():
+            val = self.utilization[core]
+            if val < min_val:
+                min_val = val
+                min_utilized_core = core
+        return min_utilized_core
 
     def redistribute(self):
         # we're installing flows by destination, so sort by received
