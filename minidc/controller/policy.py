@@ -80,9 +80,9 @@ class AdaptivePolicy(object):
         # to find the least utilized switch.
 
         # [REPLACE WITH YOUR CODE]
-        min_utilized_core = topo.coreSwitches.keys()[0]
+        min_utilized_core = self.topo.coreSwitches.keys()[0]
         min_val = self.utilization[min_utilized_core]
-        for core in topo.coreSwitches.keys():
+        for core in self.topo.coreSwitches.keys():
             val = self.utilization[core]
             if val < min_val:
                 min_val = val
@@ -97,7 +97,7 @@ class AdaptivePolicy(object):
 
         # sort largest to smallest
         stats.sort(reverse=True)
-
+        
         # reset utilization
         for core in self.topo.coreSwitches.keys():
             self.utilization[core] = 0
@@ -110,8 +110,9 @@ class AdaptivePolicy(object):
             self.assignments[host] = core
             self.utilization[core] += stat[0]
 
-        self.logger.info(self.utilization)
+        self.logger.into(self.utilization)
         self.logger.info(self.assignments)
+        
 
     def build(self, topo):
         routingTable = {}
