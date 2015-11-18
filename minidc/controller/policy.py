@@ -110,7 +110,7 @@ class AdaptivePolicy(object):
             self.assignments[host] = core
             self.utilization[core] += stat[0]
 
-        self.logger.into(self.utilization)
+        self.logger.info(self.utilization)
         self.logger.info(self.assignments)
         
 
